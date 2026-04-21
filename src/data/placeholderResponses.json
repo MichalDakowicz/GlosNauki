@@ -1,0 +1,34 @@
+{
+  "welcome": "Placeholder: sesja gotowa. Po podpieciu backendu FastAPI ta sekcja bedzie wypelniana odpowiedziami LLM i statusem ASR/TTS.",
+  "ui": {
+    "dropLabel": "DODAJ PLIK\nKLIKAJAC\nTEN OBSZAR",
+    "responsePanelTitle": "ODPOWIEDZ ASYSTENTA"
+  },
+  "actions": {
+    "dropAreaOpen": "Placeholder: otwarto wybor materialow. Pokazuje 4 przykladowe obrazy zamiast realnego uploadu.",
+    "imagePicked": "Placeholder: wybrano material \"{title}\". W produkcji tutaj uruchomi sie pipeline OCR + segmentacja + analiza LLM.",
+    "tabs": {
+      "materials": "Placeholder: zakladka Materialy. Docelowo lista dokumentow i status przetwarzania.",
+      "session": "Placeholder: zakladka Sesja glosowa. Tutaj bedzie aktywna petla pytanie -> odpowiedz -> feedback.",
+      "profile": "Placeholder: zakladka Profil. Docelowo ustawienia glosu, poziomu trudnosci i preferencji dostepnosci."
+    }
+  },
+  "voiceCommands": [
+    {
+      "command": "następne",
+      "response": "Placeholder: przejscie do kolejnego fragmentu materialu."
+    },
+    {
+      "command": "powtórz",
+      "response": "Placeholder: ponowne odczytanie ostatniego wyjasnienia."
+    },
+    {
+      "command": "wytłumacz prościej",
+      "response": "Placeholder: uproszczone wyjasnienie z przykladem krok po kroku."
+    },
+    {
+      "command": "zadaj trudniejsze pytanie",
+      "response": "Placeholder: pytanie na wyzszym poziomie taksonomii Blooma."
+    }
+  ]
+}

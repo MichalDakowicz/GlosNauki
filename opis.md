@@ -1,0 +1,7 @@
+# Inteligentny Asystent Edukacyjny
+
+Projekt zakłada stworzenie inteligentnego asystenta edukacyjnego dla uczniów i studentów z dysfunkcjami wzroku. System przekształca materiały edukacyjne – zarówno cyfrowe, jak i te pochodzące ze skanów lub zdjęć – w interaktywną, w pełni głosową formę nauki. Użytkownik nie tylko słucha treści, ale może zadawać pytania, prosić o prostsze wyjaśnienia oraz sprawdzać swoją wiedzę w dialogu z asystentem.
+
+Asystent działa w oparciu o zaawansowane modele językowe (LLM), które analizują i porządkują tekst, tworzą streszczenia, generują pytania oraz oceniają odpowiedzi ucznia. Dzięki temu proces nauki jest spersonalizowany – system może dostosować poziom trudności, tempo oraz sposób tłumaczenia do potrzeb konkretnego użytkownika, zgodnie z ideą edukacji 4.0 i personalizacji nauczania z wykorzystaniem sztucznej inteligencji.
+
+Interfejs jest projektowany w podejściu „screen‑reader‑first” i „voice‑first”, co oznacza, że wszystkie kluczowe funkcje są dostępne za pomocą komend głosowych i czytników ekranu. Aplikacja mobilna (React Native) współpracuje z VoiceOver i TalkBack, a backend w technologii FastAPI obsługuje rozpoznawanie mowy, generowanie odpowiedzi oraz syntezę naturalnie brzmiącego głosu. Całość jest projektowana zgodnie z wytycznymi WCAG 2.1 AA oraz nadchodzącym European Accessibility Act, aby realnie wspierać samodzielność osób niewidomych i słabowidzących.

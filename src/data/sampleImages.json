@@ -1,0 +1,26 @@
+[
+  {
+    "id": "img-1",
+    "title": "Biologia - notatka z fotosyntezy",
+    "uri": "https://picsum.photos/id/20/900/600",
+    "description": "Przykladowy skan notatki do testu OCR i ekstrakcji tresci."
+  },
+  {
+    "id": "img-2",
+    "title": "Matematyka - zadania domowe",
+    "uri": "https://picsum.photos/id/28/900/600",
+    "description": "Przykladowa karta pracy do podzialu na pytania i odpowiedzi."
+  },
+  {
+    "id": "img-3",
+    "title": "Historia - os czasu",
+    "uri": "https://picsum.photos/id/42/900/600",
+    "description": "Przykladowy material do streszczenia i quizu glosowego."
+  },
+  {
+    "id": "img-4",
+    "title": "Chemia - tablica z lekcji",
+    "uri": "https://picsum.photos/id/48/900/600",
+    "description": "Przykladowe zdjecie tablicy do OCR i normalizacji tekstu."
+  }
+]
