@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View, ScrollView } from 'react-native';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { DropZone } from '../components/DropZone';
 import { ImagePreviewModal } from '../components/ImagePreviewModal';
@@ -47,13 +47,16 @@ export function MainScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <View style={styles.mainSection}>
+        <ScrollView
+          contentContainerStyle={styles.mainSection}
+          showsVerticalScrollIndicator={false}
+        >
           <DropZone label={content.ui.dropLabel} onPress={handleDropPress} />
           <ResponsePanel
             title={content.ui.responsePanelTitle}
             content={`${latestResponse}\n\nNastepna komenda demo: ${currentVoicePreview.command}`}
           />
-        </View>
+        </ScrollView>
 
         <View style={styles.voiceButtonWrapper}>
           <VoiceActionButton onPress={handleVoicePress} />
@@ -86,11 +89,17 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   mainSection: {
-    flex: 1,
+    // don't let ScrollView vertically center content — content should start
+    // near the top. Add small top padding so the DropZone is 10px from the
+    // top of the screen when the app opens.
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     gap: 14,
-    paddingBottom: 170,
+    paddingTop: 10,
+    // leave extra bottom padding so the response panel content isn't overlapped
+    // by the floating voice button which is positioned absolutely above the
+    // bottom navigation
+    paddingBottom: 280,
   },
   voiceButtonWrapper: {
     position: 'absolute',

@@ -1,25 +1,52 @@
-import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 
 type DropZoneProps = {
   label: string;
   onPress: () => void;
 };
 
-const STRIPE_COUNT = 20;
+const BASE_STRIPE_SPACING = 24;
 
 export function DropZone({ label, onPress }: DropZoneProps) {
+  const [width, setWidth] = useState<number | null>(null);
+  const [height, setHeight] = useState<number | null>(null);
+
+  const onLayout = (e: LayoutChangeEvent) => {
+    const { width: w, height: h } = e.nativeEvent.layout;
+    setWidth(w);
+    setHeight(h);
+  };
+
+  // Calculate how many stripes we need to cover the container + extra buffer
+  const spacing = BASE_STRIPE_SPACING;
+  const buffer = 400; // extra area to cover rotated stripes
+  const count = width ? Math.ceil((width + buffer) / spacing) + 4 : 20;
+  const startOffset = width ? -buffer / 2 : -120;
+
   return (
     <Pressable
       style={styles.container}
       onPress={onPress}
+      onLayout={onLayout}
       accessibilityRole="button"
       accessibilityLabel="Dodaj plik"
       accessibilityHint="Otwiera podglad przykladowych materialow do nauki"
     >
       <View style={styles.stripeLayer} pointerEvents="none">
-        {Array.from({ length: STRIPE_COUNT }).map((_, index) => (
-          <View key={`stripe-${index}`} style={[styles.stripe, { left: index * 24 - 120 }]} />
+        {Array.from({ length: count }).map((_, index) => (
+          <View
+            key={`stripe-${index}`}
+            style={[
+              styles.stripe,
+              {
+                left: index * spacing + startOffset,
+                // make height relative to container so rotated stripes cover fully
+                height: height ? Math.max(height * 3, 760) : 760,
+                top: height ? -height : -100,
+              },
+            ]}
+          />
         ))}
       </View>
       <Text style={styles.label}>{label}</Text>

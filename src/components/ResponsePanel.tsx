@@ -1,15 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StyleProp, ViewStyle } from 'react-native';
 
 type ResponsePanelProps = {
   title: string;
   content: string;
+  // optional style to allow parent components to reserve space
+  // (for example marginBottom so floating controls don't overlap)
+  style?: StyleProp<ViewStyle>;
 };
 
-export function ResponsePanel({ title, content }: ResponsePanelProps) {
+export function ResponsePanel({ title, content, style }: ResponsePanelProps) {
   return (
     <View
-      style={styles.container}
+      style={[styles.container, style]}
       accessibilityRole="summary"
       accessibilityLabel={`${title}. ${content}`}
     >
