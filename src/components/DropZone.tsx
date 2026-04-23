@@ -4,11 +4,12 @@ import { LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-nati
 type DropZoneProps = {
   label: string;
   onPress: () => void;
+  assistantResponse?: string;
 };
 
 const BASE_STRIPE_SPACING = 24;
 
-export function DropZone({ label, onPress }: DropZoneProps) {
+export function DropZone({ label, onPress, assistantResponse }: DropZoneProps) {
   const [width, setWidth] = useState<number | null>(null);
   const [height, setHeight] = useState<number | null>(null);
 
@@ -26,30 +27,42 @@ export function DropZone({ label, onPress }: DropZoneProps) {
 
   return (
     <Pressable
-      style={styles.container}
+      style={[styles.container, assistantResponse && styles.containerResponse]}
       onPress={onPress}
       onLayout={onLayout}
       accessibilityRole="button"
       accessibilityLabel="Dodaj plik"
       accessibilityHint="Otwiera podglad przykladowych materialow do nauki"
     >
-      <View style={styles.stripeLayer} pointerEvents="none">
-        {Array.from({ length: count }).map((_, index) => (
-          <View
-            key={`stripe-${index}`}
-            style={[
-              styles.stripe,
-              {
-                left: index * spacing + startOffset,
-                // make height relative to container so rotated stripes cover fully
-                height: height ? Math.max(height * 3, 760) : 760,
-                top: height ? -height : -100,
-              },
-            ]}
-          />
-        ))}
-      </View>
-      <Text style={styles.label}>{label}</Text>
+      {!assistantResponse && (
+        <View style={styles.stripeLayer} pointerEvents="none">
+          {Array.from({ length: count }).map((_, index) => (
+            <View
+              key={`stripe-${index}`}
+              style={[
+                styles.stripe,
+                {
+                  left: index * spacing + startOffset,
+                  // make height relative to container so rotated stripes cover fully
+                  height: height ? Math.max(height * 3, 760) : 760,
+                  top: height ? -height : -100,
+                },
+              ]}
+            />
+          ))}
+        </View>
+      )}
+      {assistantResponse ? (
+        <Text
+          style={styles.responseCenter}
+          accessibilityRole="text"
+          accessibilityLabel={`Odpowiedz asystenta: ${assistantResponse}`}
+        >
+          {assistantResponse}
+        </Text>
+      ) : (
+        <Text style={styles.label}>{label}</Text>
+      )}
     </Pressable>
   );
 }
@@ -58,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     maxWidth: 420,
-    minHeight: 470,
+    minHeight: 380,
     borderRadius: 28,
     borderWidth: 6,
     borderColor: '#b98f94',
@@ -86,5 +99,17 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#3d1f28',
     letterSpacing: 1,
+  },
+  responseCenter: {
+    textAlign: 'center',
+    color: '#221517',
+    fontSize: 20,
+    lineHeight: 28,
+    paddingHorizontal: 20,
+    fontWeight: '600',
+  },
+  containerResponse: {
+    backgroundColor: '#f7eef0',
+    borderColor: '#a07b80',
   },
 });
