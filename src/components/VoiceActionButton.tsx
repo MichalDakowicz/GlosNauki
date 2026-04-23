@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View, Text } from 'react-native';
 
 type VoiceActionButtonProps = {
   onPress: () => void;
@@ -12,24 +12,24 @@ export function VoiceActionButton({ onPress }: VoiceActionButtonProps) {
       style={styles.button}
       onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel="Aktywuj komende glosowa"
-      accessibilityHint="Uruchamia placeholder komend voice-first"
+      accessibilityLabel="Aktywuj komendę głosową"
+      accessibilityHint="Rozpocznij mówienie z asystentem"
     >
       <View style={styles.iconRow}>
-        <MaterialCommunityIcons name="file-document-outline" size={34} color="#4a2029" />
-        <MaterialCommunityIcons name="waveform" size={28} color="#4a2029" />
+        <MaterialCommunityIcons name="microphone" size={48} color="#1c070c" />
       </View>
+      <Text style={styles.label}>MÓW</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    width: 132,
-    height: 122,
-    borderRadius: 24,
+    width: 140,
+    height: 140,
+    borderRadius: 70,
     backgroundColor: '#be9197',
-    borderWidth: 3,
+    borderWidth: 4,
     borderColor: '#5a2f38',
     justifyContent: 'center',
     alignItems: 'center',
@@ -38,10 +38,17 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
     elevation: 6,
+    marginBottom: 20,
   },
   iconRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+  },
+  label: {
+    marginTop: 4,
+    fontSize: 20,
+    fontWeight: '900',
+    color: '#1c070c',
+    letterSpacing: 2,
   },
 });

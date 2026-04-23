@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SampleImage } from '../types/ui';
 
 type ImagePreviewModalProps = {
@@ -39,8 +40,8 @@ export function ImagePreviewModal({
           accessibilityRole="none"
           accessible={false}
         >
-          <Text style={styles.title}>Przykladowe materialy</Text>
-          <Text style={styles.subtitle}>Wybierz obraz placeholder do dalszego flow.</Text>
+          <Text style={styles.title}>Przykładowe materiały</Text>
+          <Text style={styles.subtitle}>Wybierz obraz z listy do przetworzenia</Text>
 
           <FlatList
             data={images}
@@ -54,9 +55,9 @@ export function ImagePreviewModal({
                 onPress={() => onSelectImage(item)}
                 accessibilityRole="button"
                 accessibilityLabel={item.title}
-                accessibilityHint={item.description}
+                accessibilityHint={`Przetwarza obraz: ${item.description}`}
               >
-                <Image source={{ uri: item.uri }} style={styles.image} resizeMode="cover" />
+                <Image source={{ uri: item.uri }} style={styles.image} resizeMode="cover" accessible={false} />
                 <Text style={styles.imageTitle}>{item.title}</Text>
               </Pressable>
             )}
@@ -66,8 +67,9 @@ export function ImagePreviewModal({
             style={styles.closeButton}
             onPress={onClose}
             accessibilityRole="button"
-            accessibilityLabel="Zamknij okno"
+            accessibilityLabel="Zamknij okno wyboru"
           >
+            <MaterialCommunityIcons name="close-circle-outline" size={24} color="#f4d5d9" />
             <Text style={styles.closeButtonText}>Zamknij</Text>
           </Pressable>
         </Pressable>
@@ -79,64 +81,75 @@ export function ImagePreviewModal({
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(34, 19, 24, 0.8)',
+    backgroundColor: 'rgba(34, 19, 24, 0.85)',
     justifyContent: 'center',
     paddingHorizontal: 18,
   },
   card: {
     borderRadius: 22,
-    borderWidth: 2,
-    borderColor: '#9a7177',
+    borderWidth: 3,
+    borderColor: '#b2878d',
     backgroundColor: '#5b4349',
-    padding: 14,
+    padding: 18,
   },
   title: {
     color: '#ffe9ed',
-    fontWeight: '800',
-    fontSize: 20,
+    fontWeight: '900',
+    fontSize: 24,
+    textAlign: 'left',
   },
   subtitle: {
     color: '#f2d6da',
-    fontSize: 13,
-    marginTop: 4,
-    marginBottom: 12,
+    fontSize: 16,
+    marginTop: 6,
+    marginBottom: 16,
+    textAlign: 'left',
+    fontWeight: '600',
   },
   listContent: {
-    gap: 10,
+    gap: 12,
   },
   column: {
-    gap: 10,
+    gap: 12,
   },
   imageCard: {
     flex: 1,
     backgroundColor: '#886a70',
-    borderRadius: 12,
+    borderRadius: 14,
     overflow: 'hidden',
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: '#ab858b',
   },
   image: {
     width: '100%',
-    height: 90,
+    height: 110,
   },
   imageTitle: {
     color: '#ffeef1',
-    fontSize: 12,
-    lineHeight: 16,
-    paddingHorizontal: 8,
-    paddingVertical: 8,
+    fontSize: 16,
+    fontWeight: '700',
+    lineHeight: 22,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    textAlign: 'left',
   },
   closeButton: {
-    marginTop: 12,
-    alignSelf: 'flex-end',
+    marginTop: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    alignSelf: 'flex-start',
     backgroundColor: '#4a1d25',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderWidth: 2,
+    borderColor: '#733340',
   },
   closeButtonText: {
     color: '#f4d5d9',
-    fontWeight: '700',
-    fontSize: 14,
+    fontWeight: '800',
+    fontSize: 18,
   },
 });

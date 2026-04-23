@@ -53,13 +53,20 @@ export function DropZone({ label, onPress, assistantResponse }: DropZoneProps) {
         </View>
       )}
       {assistantResponse ? (
-        <Text
-          style={styles.responseCenter}
-          accessibilityRole="text"
-          accessibilityLabel={`Odpowiedz asystenta: ${assistantResponse}`}
-        >
-          {assistantResponse}
-        </Text>
+        <View style={{ width: '100%', padding: 10 }}>
+          <Text
+            style={styles.responseLeft}
+            accessibilityRole="text"
+            accessibilityLabel={`Odpowiedz asystenta: ${assistantResponse}`}
+          >
+            {assistantResponse.split('\n').map((line, i) => (
+              <Text key={i} style={line.startsWith('**') ? { fontWeight: '900', fontSize: 26, marginBottom: 10 } : {}}>
+                {line.replace(/\*\*/g, '')}
+                {i < assistantResponse.split('\n').length - 1 ? '\n\n' : ''}
+              </Text>
+            ))}
+          </Text>
+        </View>
       ) : (
         <Text style={styles.label}>{label}</Text>
       )}
@@ -100,13 +107,13 @@ const styles = StyleSheet.create({
     color: '#3d1f28',
     letterSpacing: 1,
   },
-  responseCenter: {
-    textAlign: 'center',
-    color: '#221517',
-    fontSize: 20,
-    lineHeight: 28,
+  responseLeft: {
+    textAlign: 'left',
+    color: '#1a0d10',
+    fontSize: 24,
+    lineHeight: 34,
     paddingHorizontal: 20,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   containerResponse: {
     backgroundColor: '#f7eef0',

@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View, Text } from 'react-native';
 import { TabId } from '../types/ui';
 
 type BottomNavigationProps = {
@@ -38,8 +38,11 @@ export function BottomNavigation({ activeTab, onTabPress }: BottomNavigationProp
             <MaterialCommunityIcons
               name={item.icon}
               size={54}
-              color={isActive ? '#d0adb1' : '#552430'}
+              color={isActive ? '#fafafa' : '#2a0a14'}
             />
+            <Text style={[styles.label, isActive && styles.activeLabel]}>
+              {item.accessibilityLabel}
+            </Text>
           </Pressable>
         );
       })}
@@ -62,8 +65,18 @@ const styles = StyleSheet.create({
     minHeight: 108,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: 10,
   },
   activeItem: {
     backgroundColor: '#4b161d',
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#2a0a14',
+    marginTop: 6,
+  },
+  activeLabel: {
+    color: '#fafafa',
   },
 });
